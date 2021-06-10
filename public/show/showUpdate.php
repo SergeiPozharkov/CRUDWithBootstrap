@@ -28,10 +28,13 @@ $table = new Table($config);
 
 $sql = "SELECT * FROM `ved` WHERE `id` = $_GET[edit]";
 $row = $table->runSQL($sql);
-
-foreach ($row as $res) {
-    $result = $res;
-}
+$names = $table->allColumns();
+//foreach ($row as $res) {
+//    $result = $res;
+//}
+$comments = $table->columnComments();
+$i = 0;
+print_r($names);
 ?>
 <div class="container">
     <div class="row">
@@ -40,11 +43,47 @@ foreach ($row as $res) {
         <div class="col">
             <h1>Update</h1>
             <form action="../operation/update.php" method="post">
-                <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                <span><b>FIO: </b></span> <input type="text" class="form-control" name="fio"
-                                                 value="<?= $result['fio'] ?>"><br>
-                <span><b>Zp: </b></span><input type="text" class="form-control" name="zp"
-                                               value="<?= $result['zp'] ?>"><br>
+                <?php
+
+                foreach ($row as $val) {
+                    $value[] = $val;
+                    foreach ($value as $inputValues) {
+                        foreach ($inputValues as $key => $inputValue) {
+
+                            if ($key == 'id') {
+                                ?>
+                                <input type="hidden"
+                                    <?php for ($i = 0; $i < count($names); $i++): ?>
+                                        <?php if ($names[$i] == 'id'): ?>
+                                            name="<?= $names[$i] ?>"
+                                        <?php endif; ?>
+                                    <?php endfor; ?>
+                                       value="<?= $inputValue ?>">
+                                <?php
+                            } else {
+                                ?>
+                                <span><b></b></span>
+                                <input type="text" class="form-control"
+                                    <?php while ($i < count($names)): ?>
+                                        <?php if ($names[$i] != 'id'): ?>
+                                            name="<?= $names[$i] ?>"
+                                        <?php endif; ?>
+                                    <?php endwhile; ?>
+                                       value="<?= $inputValue ?>"><br>
+                                <?php
+                            }
+                        }
+                    }
+                }
+                print_r($inputValues);
+                ?>
+
+                <!--                                <input type="hidden" name="id" value="-->
+                <? // //= $result['id'] ?><!--">-->
+                <!--                <span><b>FIO: </b></span> <input type="text" class="form-control" name="fio"-->
+                <!--                                                 value="--><? //= $result['fio'] ?><!--"><br>-->
+                <!--                <span><b>Zp: </b></span><input type="text" class="form-control" name="zp"-->
+                <!--                                               value="--><? //= $result['zp'] ?><!--"><br>-->
                 <input type="submit" class="btn btn-warning" value="Update">
             </form>
         </div>

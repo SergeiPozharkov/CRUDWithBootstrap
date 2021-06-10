@@ -25,24 +25,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '8210e1fad3b32285307dfd565c342bd49bd9fc13',
     'name' => '__root__',
   ),
   'versions' => 
   array (
     '__root__' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '8210e1fad3b32285307dfd565c342bd49bd9fc13',
     ),
     'w1020/html' => 
     array (
@@ -55,12 +55,12 @@ private static $installed = array (
     ),
     'w1020/orm' => 
     array (
-      'pretty_version' => 'v2.1',
-      'version' => '2.1.0.0',
+      'pretty_version' => 'v2.1.7',
+      'version' => '2.1.7.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c6d080d3258b2e733a6aff64a9ada65f3849ec80',
+      'reference' => 'dd44969121bf3ddad2edb481dd463d742ab1a49e',
     ),
   ),
 );

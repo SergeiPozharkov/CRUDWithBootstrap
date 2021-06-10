@@ -10,6 +10,25 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+
+use W1020\Table;
+
+include "../../vendor/autoload.php";
+
+$config = [
+    "servername" => "localhost",
+    "username" => "root",
+    "password" => "root",
+    "dbname" => "guest_book",
+    "table" => "ved"
+];
+
+$table = new Table($config);
+
+$comments = $table->columnComments();
+print_r($table->allColumns());
+?>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -17,8 +36,12 @@
         <div class="col">
             <h1>Insert</h1>
             <form action="../operation/insert.php" method="post">
-                <span><b>FIO: </b></span> <input type="text" class="form-control" name="fio">
-                <span><b>Zp: </b></span><input type="text" class="form-control" name="zp"><br>
+                <?php foreach ($table->columns() as $column): ?>
+                    <span><b><?= $comments[$column] ?></b> </span> <input type="text" class="form-control"
+                                                                          name="<?= $column ?>"><br>
+                <?php endforeach; ?>
+                <!--                <span><b>FIO: </b></span> <input type="text" class="form-control" name="fio">-->
+                <!--                <span><b>Zp: </b></span><input type="text" class="form-control" name="zp"><br>-->
                 <input type="submit" class="btn btn-success" value="insert">
             </form>
         </div>
